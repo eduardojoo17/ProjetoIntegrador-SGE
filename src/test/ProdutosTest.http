@@ -1,0 +1,45 @@
+### criarProd
+POST http://localhost:3000/produtos
+Content-Type: application/json
+
+{
+  "nome": "Notebook Dell",
+  "descricao": "Notebook i5 16GB RAM",
+  "preco": 3500.00,
+  "quantidade": 10,
+  "ativo": true
+}
+
+
+
+### buscarTd
+GET http://localhost:3000/produtos
+
+
+
+### biscaId
+GET http://localhost:3000/produtos/1
+
+
+
+### atualizar 
+PUT http://localhost:3000/produtos/1
+Content-Type: application/json
+
+{
+  "nome": "Notebook Dell Inspiron",
+  "descricao": "Notebook i7 16GB RAM",
+  "preco": 4200.00,
+  "quantidade": 8,
+  "ativo": true
+}
+
+
+
+### ativo/inativo
+PATCH http://localhost:3000/produtos/1/toggle-ativo
+
+
+
+### deletar
+DELETE http://localhost:3000/produtos/1
