@@ -1,0 +1,130 @@
+### Listar todos os usuários
+GET https://localhost:3000/usuario
+Content-Type: application/json
+
+###
+
+### Buscar usuário por ID
+GET https://localhost:3000/
+Content-Type: application/json
+
+###
+
+### Criar usuário comum
+POST https://localhost:3000/api/usuario
+Content-Type: application/json
+
+{
+  "nome": "Gustavo Silva",
+  "email": "gustavo@email.com",
+  "senha": "senha123"
+}
+
+###
+
+### Criar usuário administrador
+POST https://localhost:3000/
+Content-Type: application/json
+
+{
+  "nome": "Maria Admin",
+  "email": "maria@email.com",
+  "senha": "senha123",
+  "cargo": "admin"
+}
+
+###
+
+### Criar usuário com e-mail duplicado (deve retornar 409)
+POST https://localhost:3000/
+Content-Type: application/json
+
+{
+  "nome": "Outro Gustavo",
+  "email": "gustavo@email.com",
+  "senha": "senha123"
+}
+
+###
+
+### Criar usuário com dados inválidos (deve retornar 400)
+POST https://localhost:3000/
+Content-Type: application/json
+
+{
+  "nome": "",
+  "email": "email-invalido",
+  "senha": "123"
+}
+
+###
+
+### Atualizar nome do usuário
+PUT https://localhost:3000/
+Content-Type: application/json
+
+{
+  "nome": "Gustavo Atualizado"
+}
+
+###
+
+### Atualizar e-mail do usuário
+PUT https://localhost:3000/
+Content-Type: application/json
+
+{
+  "email": "gustavo.novo@email.com"
+}
+
+###
+
+### Atualizar senha do usuário
+PUT https://localhost:3000/
+Content-Type: application/json
+
+{
+  "senha": "novaSenha456"
+}
+
+###
+
+### Atualizar cargo para admin
+PUT https://localhost:3000/
+Content-Type: application/json
+
+{
+  "cargo": "admin"
+}
+
+###
+
+### Desativar usuário
+PUT https://localhost:3000/
+Content-Type: application/json
+
+{
+  "ativo": false
+}
+
+###
+
+### Atualizar usuário inexistente (deve retornar 404)
+PUT https://localhost:3000/
+Content-Type: application/json
+
+{
+  "nome": "Fantasma"
+}
+
+###
+
+### Remover usuário
+DELETE https://localhost:3000/
+Content-Type: application/json
+
+###
+
+### Remover usuário inexistente (deve retornar 404)
+DELETE https://localhost:3000/
+Content-Type: application/json
