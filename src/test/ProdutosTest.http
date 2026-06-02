@@ -1,5 +1,5 @@
-### criarProd
-POST http://localhost:3000/produtos
+### Criar Produtos
+POST http://localhost:3000/api/produtos
 Content-Type: application/json
 
 {
@@ -11,19 +11,18 @@ Content-Type: application/json
 }
 
 
+### Buscar Todos
+GET http://localhost:3000/api/produtos
+###
 
-### buscarTd
-GET http://localhost:3000/produtos
 
-
-
-### biscaId
-GET http://localhost:3000/produtos/1
+### Buscar Por ID
+GET http://localhost:3000/api/produtos/1
 
 
 
 ### atualizar 
-PUT http://localhost:3000/produtos/1
+PUT http://localhost:3000/api/produtos/6
 Content-Type: application/json
 
 {
@@ -37,9 +36,9 @@ Content-Type: application/json
 
 
 ### ativo/inativo
-PATCH http://localhost:3000/produtos/1/toggle-ativo
+PATCH http://localhost:3000/api/produtos/1/toggle-ativo
 
 
 
 ### deletar
-DELETE http://localhost:3000/produtos/1
+DELETE http://localhost:3000/api/produtos/5

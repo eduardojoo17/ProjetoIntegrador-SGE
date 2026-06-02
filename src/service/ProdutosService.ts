@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { Produtos } from "../entity/Produtos";
 import { AppDataSource } from "../data-source";
+import { NotFoundError } from "routing-controllers";
  
 export class ProdutosService {
   private repo: Repository<Produtos>;
@@ -27,23 +28,24 @@ export class ProdutosService {
  
   async update(id: number, data: Partial<Produtos>): Promise<Produtos | null> {
     const produto = await this.repo.findOneBy({ id });
-    if (!produto) return null;
+    if (!produto) throw new NotFoundError("Produto não encontrado")
  
     Object.assign(produto, data);
     return this.repo.save(produto);
   }
  
-  async remove(id: number): Promise<boolean> {
+  async delete(id: number): Promise<{ message: string }> {
     const produto = await this.repo.findOneBy({ id });
-    if (!produto) return false;
- 
-    await this.repo.remove(produto);
-    return true;
+    if (!produto) throw new NotFoundError("Produto não encontrado");
+  
+    await this.repo.delete(id); 
+    return { message: "Produto deletado com sucesso" };
   }
+
  
   async toggleAtivo(id: number): Promise<Produtos | null> {
     const produto = await this.repo.findOneBy({ id });
-    if (!produto) return null;
+    if (!produto) throw new NotFoundError("Produto não encontrado")
  
     produto.ativo = !produto.ativo;
     return this.repo.save(produto);
