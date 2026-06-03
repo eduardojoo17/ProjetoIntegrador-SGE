@@ -1,0 +1,29 @@
+GET http://localhost:3000/api/enderecos
+
+###
+
+POST http://localhost:3000/api/enderecos
+Content-Type: application/json
+
+{
+    "rua": "Rua 5",
+    "coluna": 2,
+    "nivel": 1
+}
+
+###
+
+PATCH http://localhost:3000/api/enderecos/2
+Content-Type: application/json
+
+{
+    "rua": "rua a",
+    "coluna": 3,
+    "nivel": 2
+}
+
+###
+
+DELETE http://localhost:3000/api/enderecos/2
+
+###
