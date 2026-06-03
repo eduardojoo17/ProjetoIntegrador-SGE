@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { EnderecoService } from "../service/EnderecoSevice";
+import { EnderecoService } from "../service/EnderecoService";
+
 
 export class EnderecoController {
   private enderecoService = new EnderecoService();
