@@ -1,7 +1,6 @@
 import { AppDataSource } from "../data-source";
 import { Movimentacao } from "../entity/Movimentacao";
-import { Produtos } from "../entity/Produto";
-
+import { Produtos } from "../entity/Produtos";
 //import { Usuario } from "../entity/Usuario";
 
 export class MovimentacaoService {
@@ -13,7 +12,7 @@ export class MovimentacaoService {
         AppDataSource.getRepository(Produtos);
 
     private usuarioRepository =
-        AppDataSource.getRepository(Usuario);
+       AppDataSource.getRepository(Usuario);
 
     create = async (data: Partial<Movimentacao>) => {
 
@@ -33,7 +32,7 @@ export class MovimentacaoService {
 
         if (!usuario) {
             throw new Error("Usuário não encontrado");
-        }
+         }
 
         if (data.status === "SAIDA") {
 
