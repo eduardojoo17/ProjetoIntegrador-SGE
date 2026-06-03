@@ -1,4 +1,4 @@
-import { CargoUsuario } from "../entity/usuario";
+import { CargoUsuario } from "../entity/Usuario";
 
 declare global {
   namespace Express {

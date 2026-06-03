@@ -1,30 +1,30 @@
 import type { Request, Response, NextFunction } from "express";
-import { UsuarioService } from "../service/usuarioService";
+import { UsuarioService } from "../service/UsuarioService";
 
 const usuarioService = new UsuarioService();
 
 export class UsuarioController {
 
-  static criar = async (req: Request, res: Response, next: NextFunction) => {
+   criar = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const novoUsuario = await usuarioService.create(req.body);
       const { senha: _, ...usuarioSemSenha } = novoUsuario as typeof novoUsuario & { senha: string };
       return res.status(201).json(usuarioSemSenha);
-    } catch (erro: unknown) {
-      next(erro);
+    } catch (error: unknown) {
+      next(error);
     }
   };
 
-  static listarTodos = async (req: Request, res: Response, next: NextFunction) => {
+   listarTodos = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const usuarios = await usuarioService.findAll();
       return res.status(200).json(usuarios);
-    } catch (erro: unknown) {
-      next(erro);
+    } catch (error: unknown) {
+      next(error);
     }
   };
 
-  static buscarPorId = async (req: Request, res: Response, next: NextFunction) => {
+   buscarPorId = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = String(req.params.id);
 
@@ -34,12 +34,12 @@ export class UsuarioController {
       }
 
       return res.status(200).json(usuario);
-    } catch (erro: unknown) {
-      next(erro);
+    } catch (error: unknown) {
+      next(error);
     }
   };
 
-  static atualizar = async (req: Request, res: Response, next: NextFunction) => {
+   atualizar = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = String(req.params.id);
 
@@ -50,12 +50,12 @@ export class UsuarioController {
 
       const { senha: _, ...usuarioSemSenha } = usuario as typeof usuario & { senha: string };
       return res.status(200).json(usuarioSemSenha);
-    } catch (erro: unknown) {
-      next(erro);
+    } catch (error: unknown) {
+      next(error);
     }
   };
 
-  static remover = async (req: Request, res: Response, next: NextFunction) => {
+   remover = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id = String(req.params.id);
 
@@ -65,8 +65,8 @@ export class UsuarioController {
       }
 
       return res.status(204).send();
-    } catch (erro: unknown) {
-      next(erro);
+    } catch (error: unknown) {
+      next(error);
     }
   };
 }

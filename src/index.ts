@@ -1,14 +1,14 @@
 import express from "express";
 import type { Application } from "express";
 import { AppDataSource } from "./data-source.js";
-import usuarioRoutes from "./routes/usuarioRoutes.js";
+import { usuarioRoutes } from "./routes/UsuarioRoutes.js";
 import { ProdutosRoutes } from "./routes/ProdutosRoutes.js";
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use("/usuarios", usuarioRoutes);
+app.use("/api/usuarios", usuarioRoutes);
 app.use("/api/produtos",ProdutosRoutes)
 
 AppDataSource.initialize()

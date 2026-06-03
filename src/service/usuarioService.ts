@@ -1,5 +1,6 @@
+import { NotFoundError } from "routing-controllers";
 import { AppDataSource } from "../data-source.js";
-import { Usuario } from "../entity/usuario.js";
+import { Usuario } from "../entity/Usuario.js";
 
 export class UsuarioService {
   private usuarioRepository = AppDataSource.getRepository(Usuario);
@@ -19,19 +20,15 @@ export class UsuarioService {
 
   async update(id: string, usuarioData: Partial<Usuario>): Promise<Usuario | null> {
     const usuario = await this.usuarioRepository.findOneBy({ id: id as unknown as string });
-    if (!usuario) {
-      return null;
-    }
+    if (!usuario) throw new NotFoundError("Usuario não encontrado");
     Object.assign(usuario, usuarioData);
     return await this.usuarioRepository.save(usuario);
   }
 
-  async delete(id: string): Promise<boolean> {
+  async delete(id: string): Promise<{ message: string }> {
     const usuario = await this.usuarioRepository.findOneBy({ id: id as unknown as string });
-    if (!usuario) {
-      return false;
-    }
+    if (!usuario) throw new NotFoundError("Usuario não encontrado");
     await this.usuarioRepository.remove(usuario);
-    return true;
+    return { message: "Produto deletado com sucesso" };
   }
 }
