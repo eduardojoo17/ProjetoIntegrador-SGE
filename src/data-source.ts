@@ -11,7 +11,7 @@ const options: DataSourceOptions = {
   database: process.env.DB_DATABASE,
   synchronize: true,
   logging: true,
-  entities: [Endereco],
+  entities: ["src/entity/*.ts"],
   migrations: [],
   subscribers: [],
 };
