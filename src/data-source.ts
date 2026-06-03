@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { DataSource, type DataSourceOptions } from "typeorm";
+import { Endereco } from "./entity/endereco";
 
 const options: DataSourceOptions = {
   type: (process.env.DB_TYPE as "postgres") || "postgres",
