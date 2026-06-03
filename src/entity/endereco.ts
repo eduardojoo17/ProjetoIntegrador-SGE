@@ -1,5 +1,7 @@
 import { IsEnum, IsNotEmpty, IsString } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn,OneToMany } from "typeorm";
+import { Produtos } from "./Produtos";
+import { Movimentacao } from "./Movimentacao";
 
 export enum EnderecoStatus {
   LIVRE = "livre",
@@ -40,4 +42,7 @@ export class Endereco {
       "Status inválido('livre, ocupado, reservado, em_movimentacao, bloqueado')",
   })
   enderecoStatus: EnderecoStatus;
+
+@OneToMany(() => Movimentacao, (movimentacao: Movimentacao) => movimentacao.endereco)
+movimentacoes!: Movimentacao[];
 }
