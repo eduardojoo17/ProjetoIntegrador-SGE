@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Movimentacao } from "./Movimentacao";
 
  @Entity()
   export class Produtos {
@@ -17,5 +18,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
     @Column({ type: "timestamp" })
     criadoEm!: Date
 
+    @OneToMany(() => Movimentacao, (movimentacao: Movimentacao) => movimentacao.produto)
+    movimentacao!: Movimentacao[];
     
   }
