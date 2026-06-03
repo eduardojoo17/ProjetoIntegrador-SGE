@@ -28,13 +28,13 @@ export class MovimentacaoController {
         return res.status(200).json(movimentacao);
     }
 
-//  async update(req: Request, res: Response) {
-//      const id = Number(req.params.id);
-    //  if (Number.isNaN(id)) return res.status(400).json({ message: "ID inválido" });
+  async update(req: Request, res: Response) {
+      const id = Number(req.params.id);
+          if (Number.isNaN(id)) return res.status(400).json({ message: "ID inválido" });
 
-        //const movimentacao = await this.movimentacaoService.update(id, req.body);
-        //return res.status(200).json(movimentacao);
-    //}
+            const movimentacao = await this.movimentacaoService.update(id, req.body);
+            return res.status(200).json(movimentacao);
+}
 
     //async delete(req: Request, res: Response) {
         //const id = Number(req.params.id);

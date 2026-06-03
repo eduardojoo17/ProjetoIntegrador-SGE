@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm";
 import { JoinColumn } from "typeorm";
 import { IsNotEmpty, IsString, IsNumber  } from "class-validator";
-import { Produtos } from "./Produto";
+import { Produtos } from "./Produtos";
 //import { Usuario } from "./Usuario";
 
 export enum Status {
-  DISP = "disponivel",
-  ND = "Não disponível",
+  ENT = "entrada",
+  SD = "saida",
 }
 
 
@@ -20,18 +20,19 @@ export class Movimentacao {
     @JoinColumn({ name: "produtoId" })
     produto!: Produtos;
 
-    @IsNotEmpty()
-    @ManyToOne(() => Usuario, (usuario: Usuario) => usuario.movimentacoes)
-    @JoinColumn({ name: "usuarioId" })
-    usuario!: Usuario;
+    //@IsNotEmpty()
+    //@ManyToOne(() => Usuario, (usuario: Usuario) => usuario.movimentacoes)
+    //@JoinColumn({ name: "usuarioId" })
+    //usuario!: Usuario;
 
-    @Column({ type: "enum", enum: Status, default: Status.DISP })
+    //@IsNotEmpty()
+    //@ManyToOne(() => Endereco, (endereco: Endereco) => endereco.movimentacoes)
+    //@JoinColumn({ name: "enderecoId" })
+    //@Column("varchar")
+    //endereco!: string;
+  
+    @Column({ type: "enum", enum: Status })
     status!: Status;
-
-    @IsNotEmpty()
-    @IsString()
-    @Column("varchar")
-    endereco!: string;
 
     @IsNotEmpty()
     @IsNumber()
