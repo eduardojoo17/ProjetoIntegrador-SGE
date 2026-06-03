@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Movimentacao } from "./Movimentacao";
+import { Endereco } from "./Endereco";
 
  @Entity()
   export class Produtos {

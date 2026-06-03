@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from "typeorm";
 import { JoinColumn } from "typeorm";
 import { IsNotEmpty, IsString, IsNumber  } from "class-validator";
 import { Produtos } from "./Produtos";
+import { Endereco } from "./Endereco";
 //import { Usuario } from "./Usuario";
 
 export enum Status {
@@ -25,11 +26,11 @@ export class Movimentacao {
     //@JoinColumn({ name: "usuarioId" })
     //usuario!: Usuario;
 
-    //@IsNotEmpty()
-    //@ManyToOne(() => Endereco, (endereco: Endereco) => endereco.movimentacoes)
-    //@JoinColumn({ name: "enderecoId" })
-    //@Column("varchar")
-    //endereco!: string;
+    @IsNotEmpty()
+    @ManyToOne(() => Endereco, (endereco: Endereco) => endereco.movimentacoes)
+    @JoinColumn({ name: "enderecoId" })
+    @Column("varchar")
+    endereco!: string;
   
     @Column({ type: "enum", enum: Status })
     status!: Status;
@@ -48,5 +49,8 @@ export class Movimentacao {
     @IsNotEmpty()
     @IsString()
     @Column("varchar")
-    observacoes!: string;
+  observacoes!: string;
+  
+
+
 }
