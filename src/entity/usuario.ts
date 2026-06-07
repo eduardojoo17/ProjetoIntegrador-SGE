@@ -1,9 +1,4 @@
-import {
-  Column,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import {
   IsBoolean,
   IsEmail,
@@ -12,15 +7,10 @@ import {
   IsString,
 } from "class-validator";
 
-export enum CargoUsuario {
-  ADMIN = "admin",
-  USUARIO = "usuario",
-}
-
 @Entity()
 export class Usuario {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
   @Column("varchar")
   @IsNotEmpty({ message: "O nome é obrigatório!" })
@@ -36,10 +26,8 @@ export class Usuario {
   @IsNotEmpty({ message: "A senha é obrigatória" })
   senha!: string;
 
-  @Column({ type: "enum", enum: CargoUsuario, default: CargoUsuario.USUARIO })
-  @IsNotEmpty({ message: "O cargo é obrigatório" })
-  @IsEnum(CargoUsuario, { message: "Cargo inválido. Use 'admin' ou 'usuario'" })
-  cargo!: CargoUsuario;
+  @Column({ type: "varchar", default: "usuario" })
+  role!: "usuario" | "admin";
 
   @Column({ type: "boolean", default: true })
   @IsBoolean({ message: "O campo ativo deve ser verdadeiro ou falso" })
@@ -47,5 +35,4 @@ export class Usuario {
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   criadoEm!: Date;
-
 }

@@ -1,48 +1,47 @@
-import { IsEnum, IsNotEmpty, IsString } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn,OneToMany } from "typeorm";
-import { Produtos } from "./Produtos";
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+} from "typeorm";
 import { Movimentacao } from "./Movimentacao";
+import { Produtos } from "./Produtos";
 
 export enum EnderecoStatus {
-  LIVRE = "livre",
-  OCUPADO = "ocupado",
-  RESERVADO = "reservado",
-  EM_MOVIMENTACAO = "em_movimentacao",
-  BLOQUEADO = "bloqueado",
+  LIVRE = "LIVRE",
+  OCUPADO = "OCUPADO",
+  BLOQUEADO = "BLOQUEADO",
 }
 
-@Entity()
+@Entity("enderecos")
+@Unique(["rua", "coluna", "nivel"])
 export class Endereco {
   @PrimaryGeneratedColumn()
-  id_endereco!: number;
+  id!: number;
 
-  @Column("varchar")
-  @IsNotEmpty({ message: "O campo de 'rua' é obrigatório" })
-  @IsString({ message: "Este campo deve ser um texto!" })
-  rua!: string;
+  @Column({ type: "integer" })
+  rua!: number;
 
-  @Column("integer")
-  @IsNotEmpty({ message: "O campo 'coluna' é obrigatório" })
+  @Column({ type: "integer" })
   coluna!: number;
 
-  @Column("integer")
-  @IsNotEmpty({ message: "O campo 'nivel' é obrigatório!" })
+  @Column({ type: "integer" })
   nivel!: number;
 
-  @Column("integer", { nullable: true })
+  @Column({ type: "integer" })
   capacidadeMaxima!: number;
 
-  @Column("integer", { nullable: true })
+  @Column({ type: "integer", default: 0 })
   ocupacaoAtual!: number;
 
   @Column({ type: "enum", enum: EnderecoStatus, default: EnderecoStatus.LIVRE })
-  @IsNotEmpty()
-  @IsEnum(EnderecoStatus, {
-    message:
-      "Status inválido('livre, ocupado, reservado, em_movimentacao, bloqueado')",
-  })
-  enderecoStatus: EnderecoStatus;
+  status!: EnderecoStatus;
 
-@OneToMany(() => Movimentacao, (movimentacao: Movimentacao) => movimentacao.endereco)
-movimentacoes!: Movimentacao[];
+  @ManyToOne(() => Produtos, (produto) => produto.enderecos, { nullable: true }) // <-- Ajustado aqui!
+  produto!: Produtos | null;
+
+  @OneToMany(() => Movimentacao, (movimentacao) => movimentacao.endereco)
+  movimentacoes!: Movimentacao[];
 }

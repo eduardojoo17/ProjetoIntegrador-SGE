@@ -6,24 +6,26 @@ POST http://localhost:3000/api/enderecos
 Content-Type: application/json
 
 {
-    "rua": "Rua 5",
+    "rua": 59,
     "coluna": 2,
-    "nivel": 1
+    "nivel": 1,
+    "capacidadeMaxima":100
 }
 
 ###
 
-PATCH http://localhost:3000/api/enderecos/2
+PATCH http://localhost:3000/api/enderecos/13
 Content-Type: application/json
 
 {
-    "rua": "rua a",
+    "rua": 8,
     "coluna": 3,
-    "nivel": 2
+    "nivel": 2,
+    "capacidadeMaxima":100
 }
 
 ###
 
-DELETE http://localhost:3000/api/enderecos/2
+DELETE http://localhost:3000/api/enderecos/13
 
 ###
