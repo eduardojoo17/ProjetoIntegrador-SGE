@@ -22,7 +22,7 @@ GET http://localhost:3000/api/produtos/1
 
 
 ### atualizar 
-PUT http://localhost:3000/api/produtos/6
+PUT http://localhost:3000/api/produtos/1
 Content-Type: application/json
 
 {

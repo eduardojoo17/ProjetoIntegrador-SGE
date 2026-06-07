@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { EnderecoService } from "../service/EnderecoService";
-
+import { EnderecoService } from "../service/EnderecoSevice";
 
 export class EnderecoController {
   private enderecoService = new EnderecoService();
@@ -16,11 +15,12 @@ export class EnderecoController {
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { rua, coluna, nivel } = req.body;
+      const { rua, coluna, nivel, capacidadeMaxima } = req.body;
       const novoEndereco = await this.enderecoService.create(
         rua,
         coluna,
-        nivel
+        nivel,
+        capacidadeMaxima,
       );
       return res.status(201).json(novoEndereco);
     } catch (error: unknown) {

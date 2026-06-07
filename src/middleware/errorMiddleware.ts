@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import type { ApiError } from "../helpers/ApiError.js";
+import type { ApiError } from "../helpers/apiError";
 import type { ValidationError } from "class-validator";
 
 type AppError = Error &
@@ -11,7 +11,7 @@ export const errorMiddleware = (
   error: AppError,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   console.error("ErrorMiddleware:", error);
 
