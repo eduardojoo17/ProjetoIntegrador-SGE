@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Movimentacao } from "./Movimentacao";
-import { Endereco } from "./Endereco";
+import { Endereco } from "./endereco";
 
 @Entity()
 export class Produtos {
@@ -21,10 +21,10 @@ export class Produtos {
 
   @OneToMany(
     () => Movimentacao,
-    (movimentacao: Movimentacao) => movimentacao.produto,
+    (movimentacao: Movimentacao) => movimentacao.produto
   )
   movimentacao!: Movimentacao[];
 
   @OneToMany(() => Endereco, (endereco) => endereco.produto)
-  enderecos: Endereco[];
+  enderecos!: Endereco[];
 }

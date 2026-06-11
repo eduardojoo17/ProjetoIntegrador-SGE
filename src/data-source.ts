@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource, type DataSourceOptions } from "typeorm";
-import { Endereco } from "./entity/Endereco.js";
+import { Endereco } from "./entity/endereco.js";
 import { Movimentacao } from "./entity/Movimentacao.js";
 import { Produtos } from "./entity/Produtos.js";
 import { Usuario } from "./entity/usuario.js";
@@ -15,7 +15,7 @@ const options: DataSourceOptions = {
   synchronize: true,
   logging: true,
   entities: [Endereco, Movimentacao, Produtos, Usuario],
-  //entities: ["src/entity/*.ts"],
+
   migrations: [],
   subscribers: [],
 };

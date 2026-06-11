@@ -6,8 +6,8 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from "typeorm";
-import { Movimentacao } from "./Movimentacao";
-import { Produtos } from "./Produtos";
+import { Movimentacao } from "./Movimentacao.js";
+import { Produtos } from "./Produtos.js";
 
 export enum EnderecoStatus {
   LIVRE = "LIVRE",
