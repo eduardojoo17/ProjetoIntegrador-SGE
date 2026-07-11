@@ -5,15 +5,19 @@ import { usuarioRoutes } from "./routes/usuarioRoutes.js";
 import { enderecoRoutes } from "./routes/enderecoRoutes.js";
 import { ProdutosRoutes } from "./routes/ProdutosRoutes.js";
 import { authRoutes } from "./routes/AuthRoutes.js";
+import { verificar } from "./middleware/authMiddleware.js";
+import { errorMiddleware } from "./middleware/errorMiddleware.js";
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use("/api/usuarios", usuarioRoutes);
-app.use("/api/enderecos", enderecoRoutes);
-app.use("/api/produtos", ProdutosRoutes);
+app.use("/api/usuarios", verificar, usuarioRoutes);
+app.use("/api/enderecos", verificar, enderecoRoutes);
+app.use("/api/produtos", verificar, ProdutosRoutes);
 app.use("/api/auth", authRoutes);
+
+app.use(errorMiddleware);
 
 AppDataSource.initialize()
   .then(() => {

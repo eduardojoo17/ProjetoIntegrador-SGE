@@ -1,29 +1,38 @@
+@token= eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzgzNzI4NjA3LCJleHAiOjE3ODM3NTc0MDd9.iUsI2EMCqnI42glJHcnJc0cNfeueLMMskjW7Aufm2Fg
+
+
 ### Criar Produtos
 POST http://localhost:3000/api/produtos
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "nome": "Notebook Dell",
-  "descricao": "Notebook i5 16GB RAM",
-  "preco": 3500.00,
-  "quantidade": 10,
+  "codigo":"teste02",
+  "nome": "Notebook pato",
+  "descricao": "Notebook i9 16GB RAM",
+  "altura":2,
+  "largura":2,
+  "comprimento":2,
   "ativo": true
 }
 
 
 ### Buscar Todos
 GET http://localhost:3000/api/produtos
+Authorization: Bearer {{token}}
 ###
 
 
 ### Buscar Por ID
 GET http://localhost:3000/api/produtos/1
+Authorization: Bearer {{token}}
 
 
 
 ### atualizar 
-PUT http://localhost:3000/api/produtos/1
+PUT http://localhost:3000/api/produtos/3
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "nome": "Notebook Dell Inspiron",
@@ -37,8 +46,10 @@ Content-Type: application/json
 
 ### ativo/inativo
 PATCH http://localhost:3000/api/produtos/1/toggle-ativo
+Authorization: Bearer {{token}}
 
 
 
 ### deletar
-DELETE http://localhost:3000/api/produtos/5
+DELETE http://localhost:3000/api/produtos/3
+Authorization: Bearer {{token}}
